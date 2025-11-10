@@ -25,7 +25,7 @@ A streamlined platform where:
 
 ---
 
-## ⚠️ DISCLAIMER
+## ⚠️ Disclaimer
 we did not use mariadb for this project because setting up mariadb was too complex to achieve within the projects time constraints
 Supabase also offered:
 - Built-in data persistence (all CRUD operations and relationships work identically to MariaDB)
@@ -207,6 +207,7 @@ image_url TEXT,
 created_by UUID REFERENCES app_users(id) ON DELETE CASCADE,
 created_at TIMESTAMPTZ DEFAULT NOW(),
 amount_collected NUMERIC(10,2) DEFAULT 0
+
 
 
 
