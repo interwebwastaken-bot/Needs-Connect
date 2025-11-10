@@ -23,6 +23,7 @@ A streamlined platform where:
 | UI | Fully hand-coded responsive interface |
 | Email Service | Node + Resend API (for admin verification) |
 
+DISCLAIMER: WE DID NOT USE MARIADB FOR THIS PROJECT BECAUSE SETTING UP MARIADB WAS TOO COMPLEX TO ACHIEVE WITHIN THE PROJECTS TIME CONSTRAINTS
 ---
 
 ## 🧱 Core Features  
@@ -197,3 +198,4 @@ image_url TEXT,
 created_by UUID REFERENCES app_users(id) ON DELETE CASCADE,
 created_at TIMESTAMPTZ DEFAULT NOW(),
 amount_collected NUMERIC(10,2) DEFAULT 0
+
