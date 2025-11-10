@@ -31,6 +31,7 @@ Supabase also offered:
 - Built-in data persistence (all CRUD operations and relationships work identically to MariaDB)
 - Integrated authentication and email communication tools, allowing seamless signup notifications and verification flows
 - File storage support, which we used for uploading and retrieving images of “Needs”
+
 Despite the change in platform, our data structure, SQL schema, and relationships remain fully compatible with MariaDB. The system still provides perfect data persistence, real-time updates, and reliable user authentication.
 
 ---
@@ -207,6 +208,7 @@ image_url TEXT,
 created_by UUID REFERENCES app_users(id) ON DELETE CASCADE,
 created_at TIMESTAMPTZ DEFAULT NOW(),
 amount_collected NUMERIC(10,2) DEFAULT 0
+
 
 
 
