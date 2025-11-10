@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Needs Connect — Login / Sign Up</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="data:," />
+  <link rel="stylesheet" href="auth.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="container topbar">
+      <div class="brand">
+        <img src="logo.png" alt="Needs Connect Logo" class="brand-logo" />
+        <div class="brand-text">
+          <h1 class="brand-title">Needs Connect</h1>
+          <p class="brand-subtitle">Connecting Helpers and Managers Seamlessly</p>
+        </div>
+      </div>
+      <div class="primary">
+        <button type="button" data-open="login" class="btn">Login</button>
+        <button type="button" data-open="signup" class="btn">Sign Up</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main -->
+  <main class="container hero">
+    <div class="hero-card">
+      <h2>Welcome to Needs Connect</h2>
+      <p>Your platform for meaningful connections that make an impact.</p>
+      <button class="btn outline" onclick="window.location.href='testimonials.html'">
+        View Testimonials
+      </button>
+    </div>
+  </main>
+
+
+  <!-- Overlay -->
+  <div class="overlay" data-close aria-hidden="true"></div>
+
+<!-- LOGIN MODAL -->
+<div id="login-modal" class="modal" aria-hidden="true" role="dialog" aria-labelledby="login-heading">
+  <button class="close-btn" data-close aria-label="Close">&times;</button>
+  <div class="modal-content">
+    <h3 id="login-heading">Login</h3>
+    <form id="login-form" novalidate>
+      <label for="login-role">Select Role</label>
+      <select id="login-role" required>
+        <option value="">Choose Role</option>
+        <option value="helper">Helper</option>
+        <option value="admin">Admin</option>
+      </select>
+
+      <label for="login-email">Email</label>
+      <input
+        id="login-email"
+        type="email"
+        placeholder="Enter your email"
+        required
+        autocomplete="email"
+      />
+
+      <label for="login-password">Password</label>
+      <input
+        id="login-password"
+        type="password"
+        placeholder="Enter your password"
+        required
+        autocomplete="current-password"
+      />
+
+      <!-- Admin-only field -->
+      <div id="login-charity-section" style="display:none;">
+        <label for="login-charity-code">Charity Code</label>
+        <input
+          id="login-charity-code"
+          type="text"
+          placeholder="Enter your assigned charity code"
+        />
+      </div>
+
+      <button type="submit" class="btn full">Login</button>
+      <p id="login-error" class="error-msg" aria-live="polite"></p>
+    </form>
+  </div>
+</div>
+
+<!-- SIGNUP MODAL -->
+<div id="signup-modal" class="modal" aria-hidden="true" role="dialog" aria-labelledby="signup-heading">
+  <button class="close-btn" data-close aria-label="Close">&times;</button>
+  <div class="modal-content">
+    <h3 id="signup-heading">Create Account</h3>
+    <form id="signup-form" novalidate>
+      <label for="signup-name">Full Name</label>
+      <input
+        id="signup-name"
+        type="text"
+        placeholder="Enter your full name"
+        required
+        autocomplete="name"
+      />
+
+      <label for="signup-email">Email</label>
+      <input
+        id="signup-email"
+        type="email"
+        placeholder="Enter your email"
+        required
+        autocomplete="email"
+      />
+
+      <label for="signup-password">Password</label>
+      <input
+        id="signup-password"
+        type="password"
+        placeholder="Enter a password"
+        required
+        autocomplete="new-password"
+      />
+
+      <label for="signup-role">Role</label>
+      <select id="signup-role" required>
+        <option value="">Select Role</option>
+        <option value="helper">Helper</option>
+        <option value="admin">Admin</option>
+      </select>
+
+      <!-- Admin info message -->
+      <div id="admin-message" class="info-msg" style="display:none;">
+        <p>
+          Since you're signing up as an admin, please email us at
+          <strong>interwebwastaken@gmail.com</strong> with verification of your
+          charity. Once verified, we'll send you a unique charity access code
+          which you can use to log in as an admin.
+        </p>
+      </div>
+
+      <button type="submit" class="btn full">Create Account</button>
+      <p id="signup-error" class="error-msg" aria-live="polite"></p>
+    </form>
+  </div>
+</div>
+
+<!-- ABOUT US MODAL -->
+<div id="about-modal" class="modal" aria-hidden="true" role="dialog" aria-labelledby="about-heading">
+  <button class="close-btn" data-close aria-label="Close">&times;</button>
+  <div class="modal-content">
+    <h3 id="about-heading">About Us</h3>
+    <p>
+      <strong>Needs Connect</strong> was created to bridge the gap between helpers and organizations in need.
+      Our platform makes it easy for individuals and charities to connect, share resources, and make a lasting
+      social impact.
+    </p>
+    <p>
+      <strong>Team Members:</strong><br>
+      Aaron Fernandes<br>
+      Hasan Raza<br>
+      Carlos Peter
+    </p>
+  </div>
+</div>
+
+<!-- CONTACT MODAL -->
+<div id="contact-modal" class="modal" aria-hidden="true" role="dialog" aria-labelledby="contact-heading">
+  <button class="close-btn" data-close aria-label="Close">&times;</button>
+  <div class="modal-content">
+    <h3 id="contact-heading">Contact Us</h3>
+    <p class="modal-desc">
+      Have a question or want to get in touch? Send us a message and our team will get back to you shortly.
+    </p>
+
+    <form id="contact-form" class="form-styled" novalidate>
+      <label for="contact-name">Your Name</label>
+      <input id="contact-name" type="text" placeholder="Enter your name" required />
+
+      <label for="contact-email">Your Email</label>
+      <input id="contact-email" type="email" placeholder="Enter your email" required />
+
+      <label for="contact-message">Message</label>
+      <textarea id="contact-message" rows="4" placeholder="Write your message" required></textarea>
+
+      <button type="submit" class="btn full gold">Send Message</button>
+      <p id="contact-feedback" class="info-msg" style="margin-top: 1rem;"></p>
+    </form>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-left">
+      <img src="logo.png" alt="Needs Connect Logo" class="footer-logo" />
+      <div class="footer-text">
+        <h3>Needs Connect</h3>
+        <p>Empowering communities — one need at a time</p>
+      </div>
+    </div>
+
+    <div class="footer-links">
+      <a href="#" data-open="about">About Us</a>
+      <span class="divider">|</span>
+      <a href="#" data-open="contact">Contact Us</a>
+      <span class="divider">|</span>
+      <a href="privacy.html">Privacy Policy</a>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    © 2025 Needs Connect · Powered by Inter-Web
+  </div>
+</footer>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bcryptjs@2.4.3/dist/bcrypt.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js" defer></script>
+  <script src="auth.js?v=2" defer></script>
+</body>
+</html>

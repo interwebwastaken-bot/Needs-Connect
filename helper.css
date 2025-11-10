@@ -1,0 +1,412 @@
+/* ===========================================
+   Needs Connect — Helper Page (Final Version)
+   =========================================== */
+:root {
+  --navy: #0B3C5D;
+  --gold: #F4D35E;
+  --green: #16A34A;
+  --red: #EF4444;
+  --offwhite: #F8FAFC;
+  --text: #1F2937;
+  --muted: #64748B;
+  --shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  --radius: 12px;
+}
+
+/* ---------- Base ---------- */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--offwhite);
+  color: var(--text);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* ---------- Header ---------- */
+.site-header {
+  background: var(--navy);
+  color: #fff;
+  padding: 1rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  border-bottom: 2px solid rgba(255,255,255,0.1);
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+}
+.header-logo {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  object-fit: contain;
+  opacity: 0;
+  animation: fadeInLogo 0.8s ease forwards;
+}
+@keyframes fadeInLogo {
+  from { transform: scale(0.9); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+.header-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+.header-text h1 { font-size: 1.3rem; font-weight: 700; margin: 0; }
+.header-text span { font-size: 0.9rem; color: #dbe6f0; }
+
+.header-right { display: flex; align-items: center; gap: 0.6rem; }
+
+.btn {
+  border: none;
+  border-radius: var(--radius);
+  padding: 0.6rem 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.btn:hover { opacity: 0.9; transform: translateY(-1px); }
+.btn.gold { background: var(--gold); color: var(--navy); }
+.btn.small { font-size: 0.85rem; padding: 0.4rem 0.8rem; }
+.btn.full { width: 100%; }
+
+/* ---------- Controls (Fixed Full-Width Layout) ---------- */
+.wrap { max-width: 1100px; margin: 2rem auto; padding: 0 1rem; }
+
+.controls {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.controls input,
+.controls select {
+  width: 100%;
+  border-radius: 999px;
+  border: 1px solid #cbd5e1;
+  background: #fff;
+  padding: 0.7rem 1rem;
+  font-size: 0.95rem;
+  outline: none;
+}
+
+@media (max-width: 900px) {
+  .controls { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 550px) {
+  .controls { grid-template-columns: 1fr; }
+}
+
+/* ---------- Cards ---------- */
+.card-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.2rem;
+}
+.need-card {
+  background: #fff;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 1rem;
+  transition: transform 0.2s ease, filter 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.need-card:hover { transform: translateY(-2px); }
+
+.need-image {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: var(--radius);
+  margin-bottom: 0.7rem;
+  background: #f3f3f3;
+}
+
+.status-row {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 0.4rem;
+}
+.status-pill {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 700;
+  border-radius: 999px;
+  padding: 0.2rem 0.6rem;
+  color: #fff;
+}
+.badge {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  border-radius: 8px;
+  padding: 0.2rem 0.55rem;
+}
+.badge.urgent { background: var(--red); color: #fff; }
+.badge.time-sensitive { background: var(--gold); color: var(--navy); }
+
+.need-card h4 {
+  font-size: 1.05rem;
+  color: var(--navy);
+  margin: 0.3rem 0;
+}
+.need-card p { margin: 0.2rem 0; font-size: 0.9rem; color: var(--muted); }
+
+/* Progress */
+.progress-wrapper { margin-top: 0.6rem; }
+.progress-bar {
+  width: 100%;
+  height: 10px;
+  background: #e2e8f0;
+  border-radius: 999px;
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  border-radius: 999px;
+  transition: width 0.4s ease;
+}
+.progress-text {
+  font-size: 0.85rem;
+  color: #475569;
+  margin-top: 0.3rem;
+}
+
+/* Donate Button */
+.need-card .btn.gold {
+  margin-top: 0.8rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+}
+.need-card .btn.gold:disabled {
+  opacity: 0.8;
+  cursor: not-allowed;
+}
+
+/* Completed & Cancelled */
+.need-card.completed .btn.gold:disabled {
+  background: var(--green);
+  color: #fff;
+}
+.need-card.cancelled {
+  filter: grayscale(1) brightness(0.85);
+  opacity: 0.8;
+}
+
+/* ---------- Cart Sidebar ---------- */
+#cart-sidebar {
+  position: fixed;
+  top: 0;
+  right: -380px;
+  width: 340px;
+  height: 100%;
+  background: #fff;
+  box-shadow: -4px 0 12px rgba(0, 0, 0, 0.18);
+  padding: 1rem;
+  transition: right 0.3s ease;
+  z-index: 2001;
+  display: flex;
+  flex-direction: column;
+}
+#cart-sidebar.active { right: 0; }
+.cart-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #e2e8f0;
+  padding-bottom: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+.cart-items { flex: 1; overflow-y: auto; }
+.cart-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #e2e8f0;
+  padding: 0.5rem 0;
+}
+.cart-footer {
+  border-top: 1px solid #e2e8f0;
+  padding-top: 0.6rem;
+}
+#cart-total { margin: 0.5rem 0 0.8rem; }
+
+/* ---------- Overlays & Modals ---------- */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(3px);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s ease, visibility 0.25s ease;
+  z-index: 2000;
+}
+.overlay.is-visible { opacity: 1; visibility: visible; }
+
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.95);
+  background: #fff;
+  border-radius: 1rem;
+  padding: 2rem;
+  max-width: 520px;
+  width: 92%;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.25s ease;
+  z-index: 2001;
+}
+.modal.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, -50%) scale(1);
+}
+.modal h3 { margin-top: 0; color: var(--navy); }
+.modal p { margin: 0.8rem 0; color: #333; }
+
+.form-styled input,
+.form-styled textarea {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  margin-top: 0.3rem;
+}
+
+/* Donate Modal Close Button (RIGHT side) */
+#donate-modal .close-btn {
+  position: absolute;
+  top: 1.2rem;
+  right: 1.2rem;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--gold);
+  color: var(--navy);
+  border: none;
+  font-size: 1.25rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  transition: all 0.2s ease;
+}
+#donate-modal .close-btn:hover {
+  background: #f4c842;
+  transform: scale(1.05);
+}
+
+/* ---------- Footer (identical to admin) ---------- */
+.footer {
+  background-color: var(--navy);
+  color: #fff;
+  padding: 2rem 1rem;
+  margin-top: 3rem;
+}
+.footer-inner {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+.footer-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.footer-logo {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  object-fit: contain;
+}
+.footer-text h3 {
+  font-size: 1.1rem;
+  margin: 0;
+  color: var(--gold);
+}
+.footer-text p {
+  font-size: 0.9rem;
+  margin: 0;
+  opacity: 0.8;
+}
+.footer-links {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+}
+.footer-links a {
+  color: var(--gold);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+.footer-links a:hover { color: #fff; }
+.footer-links .divider {
+  color: var(--gold);
+  opacity: 0.8;
+  margin: 0 0.3rem;
+}
+.footer-bottom {
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 0.85rem;
+  opacity: 0.75;
+}
+
+/* ===== Modal Visibility + Layer Fix ===== */
+.modal.is-visible {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: translate(-50%, -50%) scale(1);
+  z-index: 3001; /* bring above overlay */
+}
+
+.overlay.is-visible {
+  z-index: 3000;
+  opacity: 1;
+  visibility: visible;
+}
+
+/* About/Contact Modal Close Button Consistency */
+.modal .close-btn {
+  position: absolute;
+  top: 1.2rem;
+  right: 1.2rem;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--gold);
+  color: var(--navy);
+  border: none;
+  font-size: 1.25rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  transition: all 0.2s ease;
+}
+.modal .close-btn:hover {
+  background: #f4c842;
+  transform: scale(1.05);
+}

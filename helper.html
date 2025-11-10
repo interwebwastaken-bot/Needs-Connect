@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Needs Connect — Helpers</title>
+
+  <!-- Fonts & Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="helper.css" />
+  <link rel="icon" href="favicon.ico" />
+</head>
+
+<body>
+  <!-- ===== HEADER ===== -->
+  <header class="site-header">
+    <div class="header-left">
+      <img src="logo.png" alt="Needs Connect Logo" class="header-logo" />
+      <div class="header-text">
+        <h1>Needs Connect</h1>
+        <span>For Helpers</span>
+      </div>
+    </div>
+    <div class="header-right">
+      <button id="view-cart" class="btn gold small">🛒 Basket</button>
+      <button id="logout-btn" class="btn small">Logout</button>
+    </div>
+  </header>
+
+  <!-- ===== MAIN ===== -->
+  <main class="wrap">
+    <section class="controls">
+      <input id="search" type="text" placeholder="Search needs (name/type/desc)"/>
+      <select id="sort">
+        <option value="created_at.desc">Newest</option>
+        <option value="created_at.asc">Oldest</option>
+        <option value="priority.desc">Highest Priority</option>
+        <option value="cost.desc">Most Expensive</option>
+        <option value="deadline.asc">Earliest Deadline</option>
+      </select>
+      <select id="filter-status">
+        <option value="">All Statuses</option>
+        <option value="ongoing">Ongoing</option>
+        <option value="paused">Paused</option>
+        <option value="completed">Completed</option>
+        <option value="cancelled">Cancelled</option>
+      </select>
+      <select id="filter-category">
+        <option value="">All Charities</option>
+      </select>
+    </section>
+
+    <section>
+      <div id="needs-container" class="card-list"></div>
+    </section>
+  </main>
+
+  <!-- ===== DONATE MODAL ===== -->
+  <div id="donate-overlay" class="overlay" aria-hidden="true"></div>
+  <div id="donate-modal" class="modal" aria-hidden="true" role="dialog" aria-labelledby="donate-heading">
+    <button class="close-btn" id="donate-close" aria-label="Close">&times;</button>
+    <div class="modal-content">
+      <h3 id="donate-heading">Donate to <span id="donate-need-name"></span></h3>
+      <p id="donate-need-desc" style="margin-top:.3rem;"></p>
+
+      <form id="donate-form" class="form-styled" novalidate>
+        <label for="donate-amount">Donation Amount (AED)</label>
+        <input id="donate-amount" type="number" min="1" step="0.50" placeholder="e.g., 50.00" required />
+        <label for="donate-note">Optional Note</label>
+        <textarea id="donate-note" rows="3" placeholder="Add a message (optional)"></textarea>
+
+        <button type="submit" class="btn gold full">Add to Basket</button>
+        <p id="donate-feedback" style="margin-top: .75rem;"></p>
+      </form>
+    </div>
+  </div>
+
+  <!-- ===== CART SIDEBAR ===== -->
+  <aside id="cart-sidebar" aria-hidden="true">
+    <div class="cart-header">
+      <h3>Your Basket</h3>
+      <button id="close-cart" class="close-btn" aria-label="Close">&times;</button>
+    </div>
+    <div id="cart-items" class="cart-items"></div>
+    <div class="cart-footer">
+      <p id="cart-total"><strong>Total:</strong> AED 0.00</p>
+      <button id="checkout" class="btn gold full">Proceed to Checkout</button>
+    </div>
+  </aside>
+  <div id="overlay"></div>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-left">
+        <img src="logo.png" alt="Needs Connect Logo" class="footer-logo" />
+        <div class="footer-text">
+          <h3>Needs Connect</h3>
+          <p>Empowering communities — one need at a time</p>
+        </div>
+      </div>
+
+      <div class="footer-links">
+        <a href="#" data-open="about">About Us</a>
+        <span class="divider">|</span>
+        <a href="#" data-open="contact">Contact Us</a>
+        <span class="divider">|</span>
+        <a href="privacy.html">Privacy Policy</a>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2025 Needs Connect · Powered by Inter-Web</div>
+  </footer>
+
+  <!-- ===== ABOUT & CONTACT MODALS ===== -->
+  <div id="about-modal" class="modal" aria-hidden="true" role="dialog" aria-labelledby="about-heading">
+    <button class="close-btn" data-close aria-label="Close">&times;</button>
+    <div class="modal-content">
+      <h3 id="about-heading">About Us</h3>
+      <p>
+        <strong>Needs Connect</strong> was created to bridge the gap between helpers and organizations in need.
+        Our platform empowers communities to collaborate transparently, share resources, and make a lasting
+        social impact.
+      </p>
+      <p>
+        <strong>Team Members:</strong><br>
+        Aaron Fernandes<br>
+        Hasan Raza<br>
+        Carlos Peter
+      </p>
+    </div>
+  </div>
+
+  <div id="contact-modal" class="modal" aria-hidden="true" role="dialog" aria-labelledby="contact-heading">
+    <button class="close-btn" data-close aria-label="Close">&times;</button>
+    <div class="modal-content">
+      <h3 id="contact-heading">Contact Us</h3>
+      <p class="modal-desc">
+        Have a question or suggestion? Send us a quick message and we’ll get back to you soon.
+      </p>
+
+      <form id="contact-form" class="form-styled" novalidate>
+        <label for="contact-name">Your Name</label>
+        <input id="contact-name" type="text" placeholder="Enter your name" required />
+
+        <label for="contact-email">Your Email</label>
+        <input id="contact-email" type="email" placeholder="Enter your email" required />
+
+        <label for="contact-message">Message</label>
+        <textarea id="contact-message" rows="4" placeholder="Write your message" required></textarea>
+
+        <button type="submit" class="btn gold full">Send Message</button>
+        <p id="contact-feedback" class="info-msg" style="margin-top: 1rem;"></p>
+      </form>
+    </div>
+  </div>
+
+  <!-- ===== OVERLAY (for About & Contact) ===== -->
+  <div class="overlay general-overlay" data-close aria-hidden="true"></div>
+
+  <!-- ===== INLINE SCRIPT FOR ABOUT/CONTACT MODALS ===== -->
+  <script>
+    (function() {
+      const overlay = document.querySelector(".general-overlay");
+      const modals = {
+        about: document.getElementById("about-modal"),
+        contact: document.getElementById("contact-modal"),
+      };
+
+      function showOverlay() { overlay.classList.add("is-visible"); }
+      function hideOverlay() { overlay.classList.remove("is-visible"); }
+      function showModal(modal) {
+        if (!modal) return;
+        showOverlay();
+        modal.classList.add("is-visible");
+        modal.setAttribute("aria-hidden", "false");
+      }
+      function hideModal(modal) {
+        if (!modal) return;
+        modal.classList.remove("is-visible");
+        modal.setAttribute("aria-hidden", "true");
+      }
+      function closeAll() {
+        Object.values(modals).forEach(hideModal);
+        hideOverlay();
+      }
+
+      document.addEventListener("click", (e) => {
+        const openBtn = e.target.closest("[data-open]");
+        if (openBtn) {
+          const t = openBtn.getAttribute("data-open");
+          closeAll();
+          showModal(modals[t]);
+          return;
+        }
+        if (e.target.classList.contains("general-overlay") || e.target.closest("[data-close]")) {
+          closeAll();
+        }
+      });
+      document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeAll(); });
+
+      const contactForm = document.getElementById("contact-form");
+      if (contactForm) {
+        contactForm.addEventListener("submit", (e) => {
+          e.preventDefault();
+          const name = document.getElementById("contact-name").value.trim();
+          const email = document.getElementById("contact-email").value.trim();
+          const msg = document.getElementById("contact-message").value.trim();
+          const feedback = document.getElementById("contact-feedback");
+          if (!name || !email || !msg) {
+            feedback.textContent = "⚠️ Please fill in all fields.";
+            feedback.style.color = "#e74c3c";
+            return;
+          }
+          feedback.textContent = "✅ Message sent successfully!";
+          feedback.style.color = "#0B3C5D";
+          contactForm.reset();
+          setTimeout(closeAll, 1500);
+        });
+      }
+    })();
+  </script>
+
+  <!-- ===== JS ===== -->
+  <script type="module" src="helper.js"></script>
+</body>
+</html>

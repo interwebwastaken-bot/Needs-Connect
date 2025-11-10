@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Needs Connect — Testimonials</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="testimonials.css" /><link rel="stylesheet" href="auth.css" />
+
+</head>
+
+<body>
+  <!-- ===== HEADER ===== -->
+  <header class="header">
+    <div class="container topbar">
+      <div class="brand">
+        <img src="logo.png" alt="Needs Connect Logo" class="brand-logo" />
+        <div class="brand-text">
+          <h1 class="brand-title">Needs Connect</h1>
+          <p class="brand-subtitle">Connecting Helpers and Managers Seamlessly</p>
+        </div>
+      </div>
+
+      <div class="primary">
+        <a href="auth.html" class="btn gold">Back to Login</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== MAIN CONTENT ===== -->
+  <main class="container testimonials">
+    <h2>What Our Users Say</h2>
+    <p class="subtitle">Here’s how Needs Connect has made an impact in our community.</p>
+
+    <div class="testimonial-grid">
+      <div class="testimonial-card">
+        <p class="quote">"Needs Connect made it so easy for me to find local causes to help. I’ve met amazing people along the way!"</p>
+        <p class="author">— Sarah L., Helper</p>
+      </div>
+
+      <div class="testimonial-card">
+        <p class="quote">"We managed to collect school supplies for 50 children in just two weeks. The platform works beautifully!"</p>
+        <p class="author">— Mr. Ahmed, Charity Admin</p>
+      </div>
+
+      <div class="testimonial-card">
+        <p class="quote">"The donation tracking system is simple and motivating. Seeing progress in real time is so rewarding."</p>
+        <p class="author">— Carlos P., Volunteer</p>
+      </div>
+    </div>
+  </main>
+    <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-left">
+        <img src="logo.png" alt="Needs Connect Logo" class="footer-logo" />
+        <div class="footer-text">
+          <h3>Needs Connect</h3>
+          <p>Empowering communities — one need at a time</p>
+        </div>
+      </div>
+
+      <div class="footer-links">
+        <a href="#" data-open="about">About Us</a>
+        <span class="divider">|</span>
+        <a href="#" data-open="contact">Contact Us</a>
+        <span class="divider">|</span>
+        <a href="privacy.html">Privacy Policy</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © 2025 Needs Connect · Powered by Inter-Web
+    </div>
+  </footer>
+
+
+    <!-- ===== OVERLAY ===== -->
+    <div class="overlay" data-close aria-hidden="true"></div>
+
+    <!-- ABOUT US MODAL -->
+    <div id="about-modal" class="modal" aria-hidden="true" role="dialog" aria-labelledby="about-heading">
+    <button class="close-btn" data-close aria-label="Close">&times;</button>
+    <div class="modal-content">
+        <h3 id="about-heading">About Us</h3>
+        <p>
+        <strong>Needs Connect</strong> was created to bridge the gap between helpers and organizations in need.
+        Our platform makes it easy for individuals and charities to connect, share resources, and make a lasting
+        social impact.
+        </p>
+        <br>
+        <p>
+        <strong>Team Members:</strong><br>
+        Aaron Fernandes<br>
+        Hasan Raza<br>
+        Carlos Peter
+        </p>
+    </div>
+    </div>
+
+    <!-- CONTACT MODAL -->
+    <div id="contact-modal" class="modal" aria-hidden="true" role="dialog" aria-labelledby="contact-heading">
+    <button class="close-btn" data-close aria-label="Close">&times;</button>
+    <div class="modal-content">
+        <h3 id="contact-heading">Contact Us</h3>
+        <p class="modal-desc">
+        Have a question or want to get in touch? Send us a message and our team will get back to you shortly.
+        </p>
+
+        <form id="contact-form" class="form-styled" novalidate>
+        <label for="contact-name">Your Name</label>
+        <input id="contact-name" type="text" placeholder="Enter your name" required />
+
+        <label for="contact-email">Your Email</label>
+        <input id="contact-email" type="email" placeholder="Enter your email" required />
+
+        <label for="contact-message">Message</label>
+        <textarea id="contact-message" rows="4" placeholder="Write your message" required></textarea>
+
+        <button type="submit" class="btn full gold">Send Message</button>
+        <p id="contact-feedback" class="info-msg" style="margin-top: 1rem;"></p>
+        </form>
+    </div>
+    </div>
+
+    <script src="auth.js" defer></script>
+
+</body>
+</html>

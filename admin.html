@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Needs Connect · Admin Dashboard</title>
+  <link rel="stylesheet" href="admin.css" />
+  <link rel="icon" href="favicon.ico" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+  <script defer src="admin.js"></script>
+</head>
+
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header class="site-header">
+    <div class="header-left">
+      <img src="logo.png" alt="Needs Connect Logo" class="header-logo" />
+      <div class="header-text">
+        <h1>Needs Connect</h1>
+        <span>Admin Dashboard</span>
+      </div>
+    </div>
+    <div class="header-right">
+      <p id="welcome-msg">Welcome, Admin</p>
+      <button id="logout-btn">Logout</button>
+    </div>
+  </header>
+
+  <!-- ===== MAIN CONTENT ===== -->
+  <main class="wrap">
+    <!-- LEFT: ALL NEEDS -->
+    <section class="left-col">
+      <h2 class="section-title">All Needs</h2>
+      <div id="needs-list" class="needs-grid"></div>
+    </section>
+
+    <!-- RIGHT: ADD NEW NEED -->
+    <aside class="right-col">
+      <h2 class="section-title">Add New Need</h2>
+      <form id="add-need-form">
+        <label for="need-name">Need Name</label>
+        <input id="need-name" type="text" required />
+
+        <label for="description">Description</label>
+        <textarea id="description" rows="3"></textarea>
+
+        <div class="form-row">
+          <div class="col">
+            <label for="cost">Cost (AED)</label>
+            <input id="cost" type="number" step="0.01" />
+          </div>
+          <div class="col">
+            <label for="deadline">Deadline</label>
+            <input id="deadline" type="date" />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="col">
+            <label for="status">Status</label>
+            <select id="status">
+              <option value="ongoing" selected>Ongoing</option>
+              <option value="paused">Paused</option>
+            </select>
+          </div>
+          <div class="col">
+            <label for="priority">Priority</label>
+            <select id="priority">
+              <option>1</option><option>2</option><option selected>3</option>
+              <option>4</option><option>5</option>
+            </select>
+          </div>
+        </div>
+
+        <label for="category">Category</label>
+        <input id="category" type="text" />
+
+        <div class="flags-row">
+          <label class="checkline">
+            <input id="urgent" type="checkbox" /> Urgent
+          </label>
+          <label class="checkline">
+            <input id="time-sensitive" type="checkbox" /> Time Sensitive
+          </label>
+        </div>
+
+        <label for="need-image">Upload Image</label>
+        <input id="need-image" type="file" accept="image/*" />
+
+        <button type="submit" class="btn-primary">Add Need</button>
+      </form>
+    </aside>
+  </main>
+
+  <!-- ===== EDIT MODAL ===== -->
+  <div class="modal-overlay" id="edit-modal">
+    <div class="modal-content edit">
+      <h2>Edit Need</h2>
+      <form id="edit-need-form">
+        <input type="hidden" id="edit-id" />
+        <label>Need Name</label>
+        <input id="edit-need-name" type="text" />
+        <label>Description</label>
+        <textarea id="edit-description" rows="3"></textarea>
+
+        <div class="form-row">
+          <div class="col">
+            <label>Cost</label>
+            <input id="edit-cost" type="number" step="0.01" />
+          </div>
+          <div class="col">
+            <label>Deadline</label>
+            <input id="edit-deadline" type="date" />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="col">
+            <label>Status</label>
+            <select id="edit-status">
+              <option value="ongoing">Ongoing</option>
+              <option value="paused">Paused</option>
+              <option value="completed">Completed</option>
+              <option value="cancelled">Cancelled</option>
+            </select>
+          </div>
+          <div class="col">
+            <label>Priority</label>
+            <select id="edit-priority">
+              <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option>
+            </select>
+          </div>
+        </div>
+
+        <label>Category</label>
+        <input id="edit-category" type="text" />
+
+        <div class="flags-row">
+          <label class="checkline">
+            <input id="edit-urgent" type="checkbox" /> Urgent
+          </label>
+          <label class="checkline">
+            <input id="edit-time-sensitive" type="checkbox" /> Time Sensitive
+          </label>
+        </div>
+
+        <div class="modal-actions">
+          <button type="submit" class="save">Save</button>
+          <button type="button" class="cancel" id="close-edit-modal">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-left">
+        <img src="logo.png" alt="Needs Connect Logo" class="footer-logo" />
+        <div class="footer-text">
+          <h3>Needs Connect</h3>
+          <p>Empowering communities — one need at a time</p>
+        </div>
+      </div>
+
+      <div class="footer-links">
+        <a href="#" data-open="about">About Us</a>
+        <span class="divider">|</span>
+        <a href="#" data-open="contact">Contact Us</a>
+        <span class="divider">|</span>
+        <a href="privacy.html">Privacy Policy</a>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2025 Needs Connect · Powered by Inter-Web</div>
+  </footer>
+
+  <!-- ===== ABOUT & CONTACT MODALS ===== -->
+  <div id="about-modal" class="modal" aria-hidden="true">
+    <button class="close-btn" data-close aria-label="Close">&times;</button>
+    <div class="modal-content">
+      <h3>About Us</h3>
+      <p>
+        <strong>Needs Connect</strong> was created to bridge the gap between helpers
+        and organizations in need. Our platform empowers communities to collaborate
+        transparently, share resources, and make lasting social impact.
+      </p>
+      <p>
+        <strong>Team Members:</strong><br>
+        Aaron Fernandes<br>
+        Hasan Raza<br>
+        Carlos Peter
+      </p>
+    </div>
+  </div>
+
+  <div id="contact-modal" class="modal" aria-hidden="true">
+    <button class="close-btn" data-close aria-label="Close">&times;</button>
+    <div class="modal-content">
+      <h3>Contact Us</h3>
+      <p class="modal-desc">
+        Have a question or suggestion? Send us a quick message and we’ll get back to you soon.
+      </p>
+
+      <form id="contact-form" class="form-styled" novalidate>
+        <label for="contact-name">Your Name</label>
+        <input id="contact-name" type="text" placeholder="Enter your name" required />
+
+        <label for="contact-email">Your Email</label>
+        <input id="contact-email" type="email" placeholder="Enter your email" required />
+
+        <label for="contact-message">Message</label>
+        <textarea id="contact-message" rows="4" placeholder="Write your message" required></textarea>
+
+        <button type="submit" class="btn gold full">Send Message</button>
+        <p id="contact-feedback" class="info-msg" style="margin-top: 1rem;"></p>
+      </form>
+    </div>
+  </div>
+
+  <!-- Overlay -->
+  <div class="overlay" data-close aria-hidden="true"></div>
+
+  <!-- ===== INLINE JS for MODALS ===== -->
+  <script>
+    (function () {
+      const overlay = document.querySelector(".overlay");
+      const modals = {
+        about: document.getElementById("about-modal"),
+        contact: document.getElementById("contact-modal"),
+      };
+
+      function showOverlay() { overlay.classList.add("is-visible"); }
+      function hideOverlay() { overlay.classList.remove("is-visible"); }
+      function showModal(modal) { if (!modal) return; showOverlay(); modal.classList.add("is-visible"); modal.setAttribute("aria-hidden","false"); }
+      function hideModal(modal) { if (!modal) return; modal.classList.remove("is-visible"); modal.setAttribute("aria-hidden","true"); }
+      function closeAll() { Object.values(modals).forEach(hideModal); hideOverlay(); }
+
+      document.addEventListener("click", (e) => {
+        const openBtn = e.target.closest("[data-open]");
+        if (openBtn) { const target = openBtn.getAttribute("data-open"); closeAll(); showModal(modals[target]); return; }
+        if (e.target.classList.contains("overlay") || e.target.closest("[data-close]")) closeAll();
+      });
+      document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeAll(); });
+
+      const contactForm = document.getElementById("contact-form");
+      contactForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const name = document.getElementById("contact-name").value.trim();
+        const email = document.getElementById("contact-email").value.trim();
+        const msg = document.getElementById("contact-message").value.trim();
+        const feedback = document.getElementById("contact-feedback");
+        if (!name || !email || !msg) { feedback.textContent = "⚠️ Please fill in all fields before sending."; feedback.style.color = "#e74c3c"; return; }
+        feedback.textContent = "✅ Thank you for your message! We’ll be in touch soon.";
+        feedback.style.color = "#0B3C5D";
+        contactForm.reset();
+        setTimeout(closeAll, 1500);
+      });
+    })();
+  </script>
+
+</body>
+</html>

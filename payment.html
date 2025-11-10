@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Needs Connect — Confirm Donation</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="payment.css"/>
+  <link rel="icon" href="favicon.ico"/>
+</head>
+
+<body>
+  <!-- ===== HEADER ===== -->
+  <header class="site-header">
+    <div class="header-left">
+      <img src="logo.png" alt="Needs Connect Logo" class="header-logo"/>
+      <div class="header-text">
+        <h1>Needs Connect</h1>
+        <span>Confirm Your Donation</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== MAIN ===== -->
+  <main class="wrap">
+    <h2>Confirm Your Donation</h2>
+
+    <section id="donation-summary" class="donation-summary"></section>
+
+    <div class="total-line">
+      <strong>Total Donation:</strong> <span id="total-amount">AED 0.00</span>
+    </div>
+
+    <hr class="divider"/>
+
+    <!-- Payment Options -->
+    <section class="payment-options">
+      <h3>Choose Payment Method</h3>
+      <div class="pay-methods">
+        <button class="pay-btn" id="pay-card">
+          <img src="https://cdn-icons-png.flaticon.com/512/633/633611.png" alt="Card" class="pay-icon" />
+          Credit / Debit Card
+        </button>
+
+        <button class="pay-btn" id="pay-google">
+          <img
+            src="https://www.svgrepo.com/show/303108/google-icon-logo.svg"
+            alt="Google Pay"
+            class="pay-icon google"
+          />
+          Google Pay
+        </button>
+
+
+        <button class="pay-btn" id="pay-apple">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" alt="Apple Pay" class="pay-icon apple" />
+          Apple Pay
+        </button>
+      </div>
+
+
+      <!-- Dummy Card Details -->
+      <form id="card-form" class="card-form">
+        <label>Cardholder Name</label>
+        <input type="text" placeholder="John Doe" required />
+        
+        <label>Card Number</label>
+        <input type="text" placeholder="1234 5678 9012 3456" maxlength="19" required />
+
+        <div class="card-row">
+          <div>
+            <label>Expiry Date</label>
+            <input type="text" placeholder="MM/YY" maxlength="5" required />
+          </div>
+          <div>
+            <label>CVV</label>
+            <input type="password" placeholder="•••" maxlength="3" required />
+          </div>
+        </div>
+      </form>
+    </section>
+
+    <button id="confirm-payment" class="btn gold full">Confirm Payment</button>
+    <p id="payment-feedback" class="info-msg"></p>
+  </main>
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+  <script type="module" src="payment.js"></script>
+</body>
+</html>

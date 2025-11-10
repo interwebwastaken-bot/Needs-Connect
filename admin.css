@@ -1,0 +1,208 @@
+/* =======================================================
+   Needs Connect — Admin Dashboard (Unified Status + Flags)
+   ======================================================= */
+
+/* ---------- Root & Base ---------- */
+:root {
+  --navy: #0B3C5D;
+  --gold: #F4D35E;
+  --accent: #328CC1;
+  --bg: #F9FAFB;
+  --text: #1F2937;
+  --shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  --green: #16a34a;
+  --danger: #d9534f;
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* ---------- Header ---------- */
+header {
+  background: var(--navy);
+  color: #fff;
+  padding: 0.9rem 1.5rem;
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 1rem;
+  border-bottom: 2px solid rgba(255,255,255,0.1);
+}
+.header-left { display: flex; align-items: center; gap: 0.9rem; }
+.header-text { display: flex; flex-direction: column; line-height: 1.2; }
+.header-text h1 { margin: 0; font-size: 1.3rem; font-weight: 700; color: #fff; }
+.header-text span { font-size: 0.9rem; color: #dbe6f0; }
+.header-right { display: flex; align-items: center; gap: 1rem; }
+#welcome-msg { font-weight: 600; font-size: 0.95rem; color: #fff; }
+
+#logout-btn {
+  background: var(--gold);
+  color: var(--navy);
+  border: none; padding: 0.5rem 1rem; border-radius: 6px;
+  cursor: pointer; font-weight: 600; transition: all 0.2s ease;
+}
+#logout-btn:hover { background: #FFE27F; transform: translateY(-1px); }
+
+.header-logo {
+  width: 52px; height: 52px; object-fit: contain; border-radius: 50%;
+  transition: transform 0.2s ease, opacity 0.4s ease;
+  opacity: 0; animation: fadeInLogo 0.8s ease forwards;
+}
+@keyframes fadeInLogo {
+  from { transform: scale(0.9); opacity: 0; }
+  to   { transform: scale(1);   opacity: 1; }
+}
+
+@media (max-width: 600px) {
+  header { flex-direction: column; text-align: center; }
+  .header-right { justify-content: center; }
+}
+
+/* ---------- Main Layout ---------- */
+main { max-width: 1100px; margin: 2rem auto; padding: 0 1rem; }
+h2.section-title {
+  color: var(--navy); margin-bottom: 1rem; font-size: 1.3rem;
+  border-left: 4px solid var(--gold); padding-left: 0.5rem;
+}
+
+/* ---------- Forms ---------- */
+form {
+  background: #fff; border-radius: 10px; box-shadow: var(--shadow);
+  padding: 1.5rem; margin-bottom: 2rem;
+}
+form label { font-weight: 600; display: block; margin-bottom: 0.3rem; }
+form input, form textarea, form select {
+  width: 100%; padding: 0.6rem; margin-bottom: 1rem;
+  border: 1px solid #d1d5db; border-radius: 8px; font: inherit; font-size: 0.95rem;
+}
+form input[type="checkbox"] { width: auto; margin-right: 0.4rem; }
+form button {
+  background: var(--gold); color: var(--navy); border: none;
+  padding: 0.7rem 1.2rem; border-radius: 8px; font-weight: 600;
+  cursor: pointer; transition: background 0.2s;
+}
+form button:hover { background: #FFE27F; }
+
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; }
+.form-row .col { display: flex; flex-direction: column; }
+.flags-row { display: flex; gap: 1rem; align-items: center; margin: 0.5rem 0 1rem; }
+.checkline { display: inline-flex; gap: 0.4rem; align-items: center; font-weight: 600; color: var(--navy); }
+
+@media (max-width: 700px) { .form-row { grid-template-columns: 1fr; } }
+
+/* ---------- Needs Grid & Cards ---------- */
+#needs-list {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 1.2rem;
+}
+.need-card {
+  background: #fff; border-radius: 10px; box-shadow: var(--shadow);
+  overflow: hidden; display: flex; flex-direction: column;
+  transition: transform 0.15s ease-in-out;
+}
+.need-card:hover { transform: translateY(-3px); }
+
+.need-thumb { width: 100%; height: 180px; object-fit: cover; background: #f3f3f3; }
+.need-info { padding: 1rem; flex: 1; }
+.need-info h4 { color: var(--navy); margin: 0 0 0.5rem; font-size: 1.05rem; }
+
+/* Status + Badges */
+.status-row { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem; }
+.status-pill {
+  display: inline-block; padding: 0.15rem 0.6rem; font-size: 0.8rem; font-weight: 700;
+  border-radius: 999px; border: 1px solid #e2e8f0; color: #334155; background: #f8fafc;
+}
+.status-ongoing   { border-color: #cbd5e1; color: #0B3C5D; }
+.status-paused    { border-color: #f59e0b; color: #92400e; background: #fff7ed; }
+.status-completed { border-color: #16a34a; color: #065f46; background: #ecfdf5; }
+.status-cancelled { border-color: #ef4444; color: #7f1d1d; background: #fef2f2; }
+
+.badge {
+  display: inline-block;
+  font-size: 0.75rem; font-weight: 700;
+  border-radius: 8px; padding: 0.2rem 0.55rem;
+}
+.badge.urgent { background: var(--danger); color: #fff; }
+.badge.time-sensitive { background: var(--gold); color: var(--navy); }
+
+/* Actions */
+.need-actions { display: flex; gap: 0.6rem; margin-top: 0.8rem; }
+.need-actions button {
+  flex: 1; border: none; border-radius: 6px; cursor: pointer;
+  font-weight: 600; padding: 0.45rem 0.8rem; font-size: 0.9rem;
+  transition: all 0.2s ease;
+}
+.btn-edit { background: var(--gold); color: var(--navy); }
+.btn-edit:hover { background: #FFE27F; }
+.btn-delete { background: #e74c3c; color: #fff; }
+.btn-delete:hover { background: #ff6b5a; }
+
+/* ---------- Modals ---------- */
+.overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.6); backdrop-filter: blur(3px);
+  display: none; z-index: 9;
+}
+.overlay.is-visible { display: block; }
+
+.modal {
+  position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.95);
+  background: #fff; border-radius: 1rem; padding: 2rem; max-width: 500px; width: 90%;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25); opacity: 0; visibility: hidden;
+  transition: all 0.25s ease; z-index: 10;
+}
+.modal.is-visible { opacity: 1; visibility: visible; transform: translate(-50%, -50%) scale(1); }
+.close-btn { position: absolute; top: 10px; right: 15px; border: none; background: none; font-size: 1.5rem; cursor: pointer; }
+
+.modal-content { text-align: left; }
+.modal h3 { margin-top: 0; font-size: 1.4rem; color: var(--navy); }
+.modal p { margin: 0.8rem 0; line-height: 1.6; color: #333; }
+
+.form-styled input, .form-styled textarea {
+  width: 100%; padding: 0.8rem; border: 1px solid #ccc; border-radius: 0.5rem;
+  font-size: 1rem; margin-top: 0.3rem;
+}
+.btn.gold.full {
+  width: 100%; background: var(--gold); color: var(--navy);
+  font-weight: 600; padding: 0.8rem 1.5rem; border-radius: 0.5rem;
+  cursor: pointer; border: none; transition: background 0.3s;
+}
+.btn.gold.full:hover { background: #eac94e; }
+
+/* Edit modal wrapper (existing) */
+.modal-overlay {
+  display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.45);
+  justify-content: center; align-items: center; z-index: 1000; backdrop-filter: blur(3px);
+}
+.modal-overlay.is-visible { display: flex; }
+.modal-content.edit {
+  background: #fff; border-radius: 12px; padding: 2rem; max-width: 480px; width: 95%;
+  box-shadow: var(--shadow); max-height: 90vh; overflow-y: auto;
+}
+
+/* ---------- Footer ---------- */
+.footer {
+  background-color: #0B3C5D; color: #fff; padding: 2rem 1rem; font-family: 'Inter', sans-serif;
+}
+.footer-inner { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; max-width: 1000px; margin: 0 auto; }
+.footer-left { display: flex; align-items: center; gap: 1rem; }
+.footer-logo { width: 45px; height: 45px; border-radius: 50%; object-fit: contain; }
+.footer-text h3 { font-size: 1.1rem; margin: 0; color: #F4D35E; }
+.footer-text p { font-size: 0.9rem; margin: 0; opacity: 0.8; }
+
+.footer-links { display: flex; align-items: center; gap: 0.5rem; font-size: 0.95rem; }
+.footer-links a { color: #F4D35E; text-decoration: none; font-weight: 500; transition: color 0.2s ease; }
+.footer-links a:hover { color: #fff; }
+.footer-links .divider { color: #F4D35E; opacity: 0.8; margin: 0 0.3rem; }
+
+.footer-bottom { text-align: center; margin-top: 1rem; font-size: 0.85rem; opacity: 0.75; }
+
+/* ---------- Utilities ---------- */
+.empty-text { text-align: center; color: #6b7280; font-size: 0.95rem; margin-top: 2rem; }
+
+/* ===== Donation Progress Bar ===== */
+.progress-wrapper { margin-top: 10px; }
+.progress-bar { width: 100%; height: 10px; background: #e2e8f0; border-radius: 20px; overflow: hidden; }
+.progress-fill { height: 100%; border-radius: 20px; transition: width 0.4s ease; }
+.progress-text { font-size: 0.85rem; color: #475569; margin-top: 6px; }
