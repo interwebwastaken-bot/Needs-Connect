@@ -1,5 +1,5 @@
 // =========================================
-// Needs Connect — Helper Page (Final Version)
+// Needs Connect — Helper Page
 // =========================================
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
@@ -373,3 +373,4 @@ function escapeHtml(s) {
 
 // ====== Init ======
 document.addEventListener("DOMContentLoaded", fetchNeeds);
+
