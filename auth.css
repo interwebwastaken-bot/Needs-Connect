@@ -42,7 +42,7 @@ body {
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
-/* Subtle hover animation for professionalism */
+/* Subtle hover animation */
 .brand-logo:hover {
   transform: scale(1.05);
   box-shadow: 0 5px 14px rgba(0,0,0,0.25);
@@ -80,7 +80,7 @@ body {
   .btn { padding: 0.5rem 0.9rem; }
 }
 
-/* ============= FOOTER ============= */
+/* FOOTER  */
 .footer {
   background: var(--navy);
   color: white;
@@ -131,8 +131,8 @@ body {
   font-weight: 600;
 }
 
-/* ===== FULL SCREEN MODALS ===== */
-/* ===== REFINED FULL MODALS (About & Contact) ===== */
+/* FULL SCREEN MODALS  */
+/*  REFINED FULL MODALS (About & Contact) */
 .modal-full {
   width: 75%;
   height: 75%;
@@ -185,7 +185,7 @@ body {
   color: var(--navy);
 }
 
-/* ===== UNIFORM CONTACT FORM STYLING ===== */
+/* UNIFORM CONTACT FORM STYLING  */
 .modal-full form {
   max-width: 480px;
   margin: 1.5rem auto;
@@ -273,7 +273,7 @@ body {
   }
 }
 
-/* --- Modal uniform look --- */
+/* Modal uniform look  */
 .modal-content h3 {
   font-size: 1.5rem;
   font-weight: 700;
@@ -316,7 +316,7 @@ body {
   box-shadow: 0 0 0 2px rgba(50, 140, 193, 0.15);
 }
 
-/* --- Button consistency --- */
+/* Button consistency  */
 .btn.full.gold {
   width: 100%;
   background-color: #F4D35E;
@@ -333,7 +333,7 @@ body {
   background-color: #f2ca42;
 }
 
-/* --- Footer Styling --- */
+/* Footer Styling  */
 .footer {
   background-color: #0B3C5D;
   color: #fff;
@@ -374,7 +374,7 @@ body {
   opacity: 0.8;
 }
 
-/* --- Links Row --- */
+/* Links Row  */
 .footer-links {
   display: flex;
   align-items: center;
@@ -399,7 +399,7 @@ body {
   margin: 0 0.3rem;
 }
 
-/* --- Bottom Line --- */
+/*  Bottom Line  */
 .footer-bottom {
   text-align: center;
   margin-top: 1rem;
@@ -417,8 +417,8 @@ body {
 
 .hero-card .btn.outline {
   margin-top: 1.5rem;
-  background-color: #f4ce46; /* same as your login/signup buttons */
-  color: #0c3b5b; /* dark blue text for contrast */
+  background-color: #f4ce46; 
+  color: #0c3b5b; 
   font-weight: 600;
   padding: 0.6rem 1.4rem;
   border-radius: 8px;
@@ -430,8 +430,9 @@ body {
 }
 
 .hero-card .btn.outline:hover {
-  background-color: #e8c63f; /* slightly darker on hover */
+  background-color: #e8c63f; 
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
   transform: translateY(-2px);
 }
+
 
