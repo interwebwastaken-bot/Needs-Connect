@@ -1,5 +1,5 @@
 // =======================================================
-//  Needs Connect — Admin Dashboard Script (Unified Status + Flags)
+//  Needs Connect — Admin Dashboard Script
 // =======================================================
 
 // ----- SUPABASE INIT -----
@@ -9,7 +9,7 @@ const supabase = window.supabase.createClient(
 );
 
 // =======================================================
-// 1️⃣ Verify Admin Access
+// Verify Admin Access
 // =======================================================
 function verifyAdminAccess() {
   const userData = localStorage.getItem("app_user");
@@ -34,7 +34,7 @@ const currentAdmin = verifyAdminAccess();
 if (!currentAdmin) console.warn("No admin session found.");
 
 // =======================================================
-// 2️⃣ Logout
+// Logout
 // =======================================================
 document.getElementById("logout-btn").addEventListener("click", () => {
   localStorage.removeItem("app_user");
@@ -56,7 +56,7 @@ function renderBadges(need) {
 }
 
 // =======================================================
-// 3️⃣ Load & Display Needs (Use DB status + flags)
+// Load & Display Needs (Use DB status + flags)
 // =======================================================
 async function loadMyNeeds() {
   const needsList = document.getElementById("needs-list");
@@ -127,7 +127,7 @@ async function loadMyNeeds() {
 }
 
 // =======================================================
-// 4️⃣ Delete Need
+// Delete Need
 // =======================================================
 async function deleteNeed(e) {
   const id = e.target.closest("button").dataset.id;
@@ -144,7 +144,7 @@ async function deleteNeed(e) {
 }
 
 // =======================================================
-// 5️⃣ Edit Need (includes status + flags)
+// Edit Need (includes status + flags)
 // =======================================================
 const editModal = document.getElementById("edit-modal");
 const closeEditModal = document.getElementById("close-edit-modal");
@@ -210,7 +210,7 @@ editForm.addEventListener("submit", async (e) => {
 });
 
 // =======================================================
-// 6️⃣ Add New Need (includes status + flags)
+// Add New Need (includes status + flags)
 // =======================================================
 handleAddNeedForm();
 
@@ -282,3 +282,4 @@ async function handleAddNeedForm() {
 // =======================================================
 loadMyNeeds();
 console.log("✅ Admin Dashboard ready");
+
