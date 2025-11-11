@@ -1,16 +1,14 @@
-// =======================================================
-//  Needs Connect — Admin Dashboard Script
-// =======================================================
 
-// ----- SUPABASE INIT -----
+//  Needs Connect — Admin Dashboard Script
+// SUPABASE INIT 
 const supabase = window.supabase.createClient(
   "https://xcrmpdrsgnffbnidbmmr.supabase.co",
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inhjcm1wZHJzZ25mZmJuaWRibW1yIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjExNDY3ODIsImV4cCI6MjA3NjcyMjc4Mn0.9tys44Srv0QeXKRK9nzxSrtQ09_QPLBynAjjPhDmo38"
 );
 
-// =======================================================
+
 // Verify Admin Access
-// =======================================================
+
 function verifyAdminAccess() {
   const userData = localStorage.getItem("app_user");
   if (!userData) {
@@ -33,18 +31,18 @@ function verifyAdminAccess() {
 const currentAdmin = verifyAdminAccess();
 if (!currentAdmin) console.warn("No admin session found.");
 
-// =======================================================
+
 // Logout
-// =======================================================
+
 document.getElementById("logout-btn").addEventListener("click", () => {
   localStorage.removeItem("app_user");
   alert("Logged out successfully.");
   window.location.href = "auth.html";
 });
 
-// =======================================================
+
 // Helpers
-// =======================================================
+
 function cap(s) { return String(s || "").charAt(0).toUpperCase() + String(s || "").slice(1); }
 
 // Badge markup
@@ -55,9 +53,9 @@ function renderBadges(need) {
   return bits.join(" ");
 }
 
-// =======================================================
-// Load & Display Needs (Use DB status + flags)
-// =======================================================
+
+// Load & Display Needs 
+
 async function loadMyNeeds() {
   const needsList = document.getElementById("needs-list");
   needsList.innerHTML = "<p class='empty-text'>Loading your posted needs...</p>";
@@ -126,9 +124,9 @@ async function loadMyNeeds() {
   document.querySelectorAll(".btn-delete").forEach((btn) => btn.addEventListener("click", deleteNeed));
 }
 
-// =======================================================
+
 // Delete Need
-// =======================================================
+
 async function deleteNeed(e) {
   const id = e.target.closest("button").dataset.id;
   if (!confirm("Are you sure you want to delete this need?")) return;
@@ -143,9 +141,9 @@ async function deleteNeed(e) {
   }
 }
 
-// =======================================================
-// Edit Need (includes status + flags)
-// =======================================================
+
+// Edit Need 
+
 const editModal = document.getElementById("edit-modal");
 const closeEditModal = document.getElementById("close-edit-modal");
 const editForm = document.getElementById("edit-need-form");
@@ -209,9 +207,9 @@ editForm.addEventListener("submit", async (e) => {
   }
 });
 
-// =======================================================
-// Add New Need (includes status + flags)
-// =======================================================
+
+// Add New Need 
+
 handleAddNeedForm();
 
 async function handleAddNeedForm() {
@@ -279,7 +277,8 @@ async function handleAddNeedForm() {
   });
 }
 
-// =======================================================
+
 loadMyNeeds();
 console.log("✅ Admin Dashboard ready");
+
 
