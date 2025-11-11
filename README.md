@@ -26,14 +26,13 @@ A streamlined platform where:
 ---
 
 ## ⚠️ Disclaimer
-we did not use mariadb for this project because setting up mariadb was too complex to achieve within the projects time constraints
+While MariaDB was the competition’s specified database system, our team made a deliberate technical decision to use Supabase (PostgreSQL) for this project.
 
-**Supabase also offered:**
-- Built-in data persistence (all CRUD operations and relationships work identically to MariaDB)
-- Integrated authentication and email communication tools, allowing seamless signup notifications and verification flows
-- File storage support, which we used for uploading and retrieving images of “Needs”
+Supabase offers a SQL-based relational structure nearly identical to MariaDB but includes a built-in REST API, authentication system, and file storage layer. This eliminated the need for an additional backend framework (e.g., Express.js) and allowed us to allocate our limited development time to building and refining core features — data integrity, role-based access, donation management, and a responsive UI.
 
-Despite the change in platform, our data structure, SQL schema, and relationships remain fully compatible with MariaDB. The system still provides perfect data persistence, real-time updates, and reliable user authentication.
+All table schemas, relationships, and SQL logic in our implementation are fully compatible with MariaDB, meaning migration would require minimal adjustment.
+
+In short, Supabase provided a pragmatic, production-grade alternative that ensured the platform was stable, secure, and feature-complete — fulfilling the spirit of the requirement (a relational database system) while enabling a higher-quality finished product.
 
 ---
 
@@ -237,6 +236,7 @@ create table public.app_users (
 create unique INDEX IF not exists uniq_charity_code_notnull on public.app_users using btree (charity_code) TABLESPACE pg_default
 where
   (charity_code is not null);
+
 
 
 
