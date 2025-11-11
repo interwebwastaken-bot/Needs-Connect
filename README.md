@@ -131,7 +131,7 @@ This guide walks through the core flows for **Helpers** and **Admins**.
 2. Fill:
    - **Name**, **Description**, **Cost**, **Deadline**
    - **Status**: `ongoing` or `paused` (you **don’t** add completed/cancelled at creation)
-   - **Priority** (1 = highest, 5 = lowest)
+   - **Priority** (1 = lowest, 5 = highest)
    - **Category**
    - **Time Sensitive** (toggle)
    - **Image URL** (optional)
@@ -186,7 +186,6 @@ For **Admin** accounts:
 
 ### 7) Keyboard & Accessibility
 
-- **Esc** closes modals.
 - Labels are associated with inputs for screen readers.
 - Buttons have clear focus styles and states.
 
@@ -209,6 +208,36 @@ image_url TEXT,
 created_by UUID REFERENCES app_users(id) ON DELETE CASCADE,
 created_at TIMESTAMPTZ DEFAULT NOW(),
 amount_collected NUMERIC(10,2) DEFAULT 0
+```
+
+### Table: `App_users`
+```sql
+create table public.app_users (
+  user_id bigserial not null,
+  full_name text not null,
+  email text not null,
+  password_hash text not null,
+  role text not null,
+  user_uuid uuid not null default gen_random_uuid (),
+  created_at timestamp with time zone null default now(),
+  charity_code text null,
+  is_verified_admin boolean null default false,
+  notes text null,
+  id uuid null default gen_random_uuid (),
+  charity_name text null,
+  constraint app_users_pkey primary key (user_id),
+  constraint app_users_email_key unique (email),
+  constraint app_users_id_key unique (id),
+  constraint app_users_user_uuid_key unique (user_uuid),
+  constraint app_users_role_check check (
+    (role = any (array['admin'::text, 'helper'::text]))
+  )
+) TABLESPACE pg_default;
+
+create unique INDEX IF not exists uniq_charity_code_notnull on public.app_users using btree (charity_code) TABLESPACE pg_default
+where
+  (charity_code is not null);
+
 
 
 
