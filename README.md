@@ -45,29 +45,28 @@ In short, Supabase provided a pragmatic, production-grade alternative that ensur
 
 ### 🎯 Admin Dashboard  
 - Create, edit, or pause needs  
-- Set priorities, costs, and deadlines  
-- Auto-tracks donation progress in real time  
+- Set **priorities**, **costs**, and **deadlines**  
+- Automatically tracks **donation progress** in real time  
 
 ### 💛 Helper Portal  
 - Browse active and paused needs  
 - Filter by **status**, **category**, and **charity**  
-- Add donations to basket and checkout  
-- “Target Met” and “Unavailable” states for completed/cancelled needs  
+- Add donations to basket and proceed to checkout  
+- Displays **“Target Met”** and **“Unavailable”** states for completed or cancelled needs  
 
 ### 📄 Additional Pages  
-- **Testimonials** — stories of impact  
-- **Privacy Policy** — simple, aesthetic standalone page  
-- **About Us** and **Contact Us** modals on every page
+- **Testimonials** — stories of community impact  
+- **Privacy Policy** — standalone, minimalist design  
+- **About Us** and **Contact Us** modals available on every page  
 
-### 🎨 Color Scheme & Design Psychology
-The color palette for Needs Connect was carefully selected based on principles of color psychology to create a warm, trustworthy, and welcoming experience for users.
-Our primary tones — deep navy blue and golden yellow — were chosen intentionally to evoke both reliability and compassion:
+### 🎨 Color Scheme & Design Psychology  
+The color palette for **Needs Connect** was carefully selected using principles of **color psychology** to create a warm, trustworthy, and welcoming experience for users.  
 
-Navy Blue (#0B3C5D) represents trust, stability, and professionalism — qualities that help reassure users their contributions are secure and meaningful.
+- **Navy Blue (`#0B3C5D`)** — represents trust, stability, and professionalism, helping reassure users that their contributions are secure and meaningful.  
+- **Gold / Yellow (`#F4D35E`)** — conveys warmth, generosity, and optimism, symbolizing hope and positive impact.  
 
-Gold / Yellow (#F4D35E) adds warmth and optimism, symbolizing generosity, hope, and positive impact.
+Together, these colors form an atmosphere of **comfort and credibility**, encouraging both helpers and charities to engage confidently while feeling emotionally connected to the platform’s mission.
 
-Together, these colors establish an atmosphere of comfort and credibility, encouraging helpers and charities to engage confidently while feeling emotionally connected to the platform’s mission.
 
 ---
 ## 🚶 How to Use Needs Connect
@@ -246,6 +245,7 @@ create table public.app_users (
 create unique INDEX IF not exists uniq_charity_code_notnull on public.app_users using btree (charity_code) TABLESPACE pg_default
 where
   (charity_code is not null);
+
 
 
 
