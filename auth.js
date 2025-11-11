@@ -1,9 +1,9 @@
-// =========================================
+
 // Needs Connect — Auth Page
-// =========================================
+
 window.__NC__ = window.__NC__ || {};
 
-// ----- SUPABASE INIT -----
+// SUPABASE INIT 
 (function initSupabase() {
   if (!window.supabase || !window.supabase.createClient) {
     console.error("Supabase UMD not loaded.");
@@ -16,7 +16,7 @@ window.__NC__ = window.__NC__ || {};
 })();
 const supabase = window.__NC__.supabase;
 
-// ----- MODALS -----
+// MODALS 
 (function initModals() {
   const overlay = document.querySelector(".overlay");
   const modals = {
@@ -59,7 +59,7 @@ const supabase = window.__NC__.supabase;
   document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeAll(); });
 })();
 
-// ----- LOGIN -----
+// LOGIN 
 (function initLogin() {
   const loginForm = document.getElementById("login-form");
   const loginRole = document.getElementById("login-role");
@@ -116,7 +116,7 @@ const supabase = window.__NC__.supabase;
   });
 })();
 
-// ----- SIGNUP -----
+// SIGNUP 
 (function initSignup() {
   const signupForm = document.getElementById("signup-form");
   const signupRole = document.getElementById("signup-role");
@@ -176,7 +176,7 @@ const supabase = window.__NC__.supabase;
   });
 })();
 
-// ----- SEND ADMIN NOTIFICATION -----
+// SEND ADMIN NOTIFICATION 
 async function sendAdminNotification(name, email) {
   const body = {
     from: "Needs Connect <onboarding@resend.dev>",
