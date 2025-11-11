@@ -1,15 +1,15 @@
-// server.js — Resend proxy with CORS fix
+// server.js, Resend set-up
 const express = require("express");
-const cors = require("cors"); // 🟢 add this line
+const cors = require("cors"); 
 const fetch = (...args) => import("node-fetch").then(({ default: fetch }) => fetch(...args));
 
 const app = express();
 app.use(express.json());
-app.use(cors()); // 🟢 allow requests from your frontend (127.0.0.1:5500)
+app.use(cors()); 
 
 const RESEND_API_KEY = "re_XXXKf3pK_HWECegz4XKQmWBzvujomXzEd";
 
-// Health check
+// check
 app.get("/", (req, res) => {
   res.send("✅ Email proxy is running successfully!");
 });
@@ -43,3 +43,4 @@ app.post("/send-email", async (req, res) => {
 app.listen(3000, () => {
   console.log("🚀 Proxy running at http://localhost:3000");
 });
+
