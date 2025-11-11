@@ -1,5 +1,5 @@
 // =========================================
-// Needs Connect — Auth Page (Final Version)
+// Needs Connect — Auth Page
 // =========================================
 window.__NC__ = window.__NC__ || {};
 
