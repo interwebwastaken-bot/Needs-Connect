@@ -57,7 +57,17 @@ In short, Supabase provided a pragmatic, production-grade alternative that ensur
 ### 📄 Additional Pages  
 - **Testimonials** — stories of impact  
 - **Privacy Policy** — simple, aesthetic standalone page  
-- **About Us** and **Contact Us** modals on every page  
+- **About Us** and **Contact Us** modals on every page
+
+### 🎨 Color Scheme & Design Psychology
+The color palette for Needs Connect was carefully selected based on principles of color psychology to create a warm, trustworthy, and welcoming experience for users.
+Our primary tones — deep navy blue and golden yellow — were chosen intentionally to evoke both reliability and compassion:
+
+Navy Blue (#0B3C5D) represents trust, stability, and professionalism — qualities that help reassure users their contributions are secure and meaningful.
+
+Gold / Yellow (#F4D35E) adds warmth and optimism, symbolizing generosity, hope, and positive impact.
+
+Together, these colors establish an atmosphere of comfort and credibility, encouraging helpers and charities to engage confidently while feeling emotionally connected to the platform’s mission.
 
 ---
 ## 🚶 How to Use Needs Connect
@@ -236,6 +246,7 @@ create table public.app_users (
 create unique INDEX IF not exists uniq_charity_code_notnull on public.app_users using btree (charity_code) TABLESPACE pg_default
 where
   (charity_code is not null);
+
 
 
 
