@@ -1,6 +1,6 @@
-// =========================================
+
 // Needs Connect — Helper Page
-// =========================================
+
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
 const supabase = createClient(
@@ -8,7 +8,7 @@ const supabase = createClient(
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inhjcm1wZHJzZ25mZmJuaWRibW1yIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjExNDY3ODIsImV4cCI6MjA3NjcyMjc4Mn0.9tys44Srv0QeXKRK9nzxSrtQ09_QPLBynAjjPhDmo38"
 );
 
-// ====== DOM Elements ======
+// DOM Elements 
 const list = document.getElementById("needs-container");
 const searchInput = document.getElementById("search");
 const sortSelect = document.getElementById("sort");
@@ -38,11 +38,11 @@ const checkoutBtn = document.getElementById("checkout");
 // Logout
 const logoutBtn = document.getElementById("logout-btn");
 
-// ====== State ======
+// State 
 let allNeeds = [];
 let donatingNeed = null;
 
-// ====== Fetch Data ======
+//  Fetch Data 
 async function fetchNeeds() {
   const { data, error } = await supabase
     .from("needs")
@@ -66,7 +66,7 @@ async function fetchNeeds() {
   applyFilters();
 }
 
-// ====== Populate Filters ======
+// Populate Filters 
 function populateCharityFilter(needs) {
   const charities = Array.from(
     new Set(
@@ -79,7 +79,7 @@ function populateCharityFilter(needs) {
     charities.map((c) => `<option value="${escapeHtml(c)}">${escapeHtml(c)}</option>`).join("");
 }
 
-// ====== Apply Filters & Sorting ======
+// Apply Filters & Sorting 
 function applyFilters() {
   let filtered = [...allNeeds];
   const term = (searchInput.value || "").trim().toLowerCase();
@@ -130,7 +130,7 @@ sortSelect.addEventListener("change", applyFilters);
 filterStatus.addEventListener("change", applyFilters);
 filterCategory.addEventListener("change", applyFilters);
 
-// ====== Render Cards ======
+// Render Cards 
 function renderNeeds(needs) {
   if (!needs.length) {
     list.innerHTML = `<p style="text-align:center;color:#64748B;">No needs found.</p>`;
@@ -214,7 +214,7 @@ function renderNeeds(needs) {
     .join("");
 }
 
-// ====== Donate UX ======
+// Donate UX 
 document.addEventListener("click", (e) => {
   const btn = e.target.closest(".donate-btn");
   if (!btn || btn.disabled) return;
@@ -276,7 +276,7 @@ donateForm.addEventListener("submit", (e) => {
   }, 500);
 });
 
-// ====== Cart ======
+// Cart 
 function openCart() {
   cartSidebar.classList.add("active");
   overlay.classList.add("active");
@@ -335,7 +335,7 @@ checkoutBtn.addEventListener("click", () => {
   window.location.href = "payment.html";
 });
 
-// ====== Donate Modal ======
+//  Donate Modal 
 function openDonate() {
   donateOverlay.classList.add("is-visible");
   donateModal.classList.add("is-visible");
@@ -352,7 +352,7 @@ function setDonateError(msg) {
   donateFeedback.style.color = "#e74c3c";
 }
 
-// ====== Logout ======
+// Logout 
 logoutBtn?.addEventListener("click", async () => {
   try {
     await supabase.auth.signOut();
@@ -364,13 +364,14 @@ logoutBtn?.addEventListener("click", async () => {
   }
 });
 
-// ====== Utils ======
+// Utils 
 function escapeHtml(s) {
   return String(s ?? "").replace(/[&<>"'`]/g, (c) =>
     ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c])
   );
 }
 
-// ====== Init ======
+// Init 
 document.addEventListener("DOMContentLoaded", fetchNeeds);
+
 
