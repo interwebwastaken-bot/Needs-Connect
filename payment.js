@@ -1,20 +1,20 @@
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
-// ===== Supabase Setup =====
+//  Supabase Setup 
 const supabase = createClient(
   "https://xcrmpdrsgnffbnidbmmr.supabase.co",
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inhjcm1wZHJzZ25mZmJuaWRibW1yIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjExNDY3ODIsImV4cCI6MjA3NjcyMjc4Mn0.9tys44Srv0QeXKRK9nzxSrtQ09_QPLBynAjjPhDmo38"
 );
 
-// ===== DOM Elements =====
-const list = document.getElementById("donation-summary"); // ✅ matches your new HTML
-const totalText = document.getElementById("total-amount"); // ✅ updated
+// DOM Elements 
+const list = document.getElementById("donation-summary"); 
+const totalText = document.getElementById("total-amount"); 
 const feedback = document.getElementById("payment-feedback");
 const confirmBtn = document.getElementById("confirm-payment");
 
 let cart = [];
 
-// ===== Load and Render Cart =====
+// Load and Render Cart 
 function loadCart() {
   try {
     cart = JSON.parse(localStorage.getItem("cart")) || [];
@@ -24,7 +24,7 @@ function loadCart() {
 }
 
 function renderCart() {
-  if (!list) return; // safety
+  if (!list) return; 
   if (!cart.length) {
     list.innerHTML = `<p style="color:#64748B;margin:0;">Your cart is empty.</p>`;
     totalText.textContent = "";
@@ -50,7 +50,7 @@ function renderCart() {
 loadCart();
 renderCart();
 
-// ===== Confirm Payment =====
+// Confirm Payment 
 confirmBtn.addEventListener("click", async () => {
   if (!cart.length) return alert("Your cart is empty!");
 
@@ -60,7 +60,7 @@ confirmBtn.addEventListener("click", async () => {
 
   try {
     for (const item of cart) {
-      // Fetch the current need
+      
       const { data: need, error: needErr } = await supabase
         .from("needs")
         .select("id, need_name, cost, amount_collected, status")
@@ -101,7 +101,7 @@ confirmBtn.addEventListener("click", async () => {
   }
 });
 
-// ===== Simple Popup =====
+// Simple Popup 
 function showPopup(message, isError = false) {
   const existing = document.querySelector(".popup-message");
   if (existing) existing.remove();
@@ -129,3 +129,4 @@ function showPopup(message, isError = false) {
     setTimeout(() => popup.remove(), 300);
   }, 2500);
 }
+
